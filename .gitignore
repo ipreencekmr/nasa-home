@@ -29,3 +29,6 @@ __diff_output__
 *.tmp
 *.bak
 *.cya
+
+# added by holocron-dev-server
+static/

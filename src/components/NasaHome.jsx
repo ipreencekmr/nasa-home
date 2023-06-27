@@ -1,32 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { loadLanguagePack, updateLocale } from '@americanexpress/one-app-ducks';
-import { FormattedMessage, IntlProvider } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
 import { fromJS } from 'immutable';
+import Grid from '@mui/material/Grid';
+import { CardComponent } from './CardComponent';
 
-export const NasaHome = ({ switchLanguage, languageData, localeName }) => {
-  const locales = ['en-US', 'en-CA', 'es-MX'];
-  // Read about loading async data:
-  // https://github.com/americanexpress/one-app/blob/main/docs/api/modules/Loading-Data.md
-  // quick and dirty solution - implement based on your use case
+export const NasaHome = ({ languageData, localeName }) => {
   if (languageData) {
     return (
       <IntlProvider locale={localeName} messages={languageData}>
-        <div>
-          <span id="greeting-message">
-            <h1><FormattedMessage id="greeting" /></h1>
-          </span>
-          <div id="locale">
-            <label htmlFor="locale-selector">
-              <p>Choose a locale:</p>
-              <select name="locale" id="locale-selector" onChange={switchLanguage}>
-                {locales.map((locale) => <option key={locale} value={locale}>{locale}</option>
-                )}
-              </select>
-            </label>
-          </div>
-        </div>
+        <Grid
+          xs={12}
+          container={true}
+          direction="row"
+          justifyContent="space-around"
+          alignItems="center"
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {[...new Array(6)].map((x) => (
+            <Grid
+              item={true}
+              xs="auto"
+              sm="auto"
+              md="auto"
+              key={x}
+            >
+              <CardComponent />
+            </Grid>
+          ))}
+        </Grid>
       </IntlProvider>
     );
   }
@@ -34,7 +39,6 @@ export const NasaHome = ({ switchLanguage, languageData, localeName }) => {
 };
 
 NasaHome.propTypes = {
-  switchLanguage: PropTypes.func.isRequired,
   languageData: PropTypes.shape({
     greeting: PropTypes.string.isRequired,
   }).isRequired,
