@@ -4,34 +4,16 @@ import { loadLanguagePack, updateLocale } from '@americanexpress/one-app-ducks';
 import { IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
 import { fromJS } from 'immutable';
-import Grid from '@mui/material/Grid';
-import { CardComponent } from './CardComponent';
+
+import { APOD } from './APOD';
+import { ItemContainer } from './ItemContainer';
 
 export const NasaHome = ({ languageData, localeName }) => {
   if (languageData) {
     return (
       <IntlProvider locale={localeName} messages={languageData}>
-        <Grid
-          xs={12}
-          container={true}
-          direction="row"
-          justifyContent="space-around"
-          alignItems="center"
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
-        >
-          {[...new Array(6)].map((x) => (
-            <Grid
-              item={true}
-              xs="auto"
-              sm="auto"
-              md="auto"
-              key={x}
-            >
-              <CardComponent />
-            </Grid>
-          ))}
-        </Grid>
+        <APOD />
+        <ItemContainer />
       </IntlProvider>
     );
   }
