@@ -1,17 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import { CardItem } from './CardItem';
-
-const items = [{
-  title: 'Near Earth Objects',
-  desc: 'List of Asteroids based on their closest approach date to Earth',
-  link: '/neo',
-},
-{
-  title: 'Mars Rover Photos',
-  desc: 'Image data gathered by NASA\'s Curiosity, Opportunity, and Spirit rovers on Mars',
-  link: '/mro',
-}];
+import items from '../resources/items.json';
 
 export const ItemContainer = () => (
   <Grid
@@ -21,7 +11,7 @@ export const ItemContainer = () => (
     justifyContent="center"
     alignItems="center"
     sx={{
-      paddingBottom: '20px;',
+      mt: 2,
     }}
   >
     {

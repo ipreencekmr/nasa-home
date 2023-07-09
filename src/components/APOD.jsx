@@ -24,12 +24,7 @@ export const APOD = () => {
   if (!apodResponse) return null;
 
   return (
-    <Container sx={{
-      marginTop: '20px',
-      marginBottom: '20px',
-      padding: '20px',
-    }}
-    >
+    <Container sx={{ my: 2 }}>
       <Card>
         <CardHeader
           title="Astronomy Picture of the Day"
