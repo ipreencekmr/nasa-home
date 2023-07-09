@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -7,21 +8,16 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
-
-const API_URL = 'https://api.nasa.gov/planetary/apod?api_key=Vv0TXGbYxieYxAIb0NfziTHJssra0FHhF8cn6DD9';
+import { useApod } from '../hooks/useApod';
 
 export const APOD = () => {
-  const [apodResponse, setApodResponse] = React.useState(null);
+  const {
+    apodResponse,
+    isLoading,
+    error,
+  } = useApod();
 
-  React.useEffect(() => {
-    fetch(API_URL).then((response) => response.json()).then((response) => {
-      setApodResponse(response);
-    }).catch((error) => {
-      console.log(`error: ${error}`);
-    });
-  }, []);
-
-  if (!apodResponse) return null;
+  if (isLoading || error || !apodResponse) return null;
 
   return (
     <Container sx={{ my: 2 }}>
