@@ -1,14 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useNasaDomain } from '../selectors/useNASADomainSelector';
+import { useApodUri } from '../selectors/useApodURISelector';
+import { useApiKey } from '../selectors/useAPIKeySelector';
 
 export const useApod = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [apodResponse, setApodResponse] = React.useState(null);
   const [error, setError] = React.useState(null);
 
-  const nasaDomain = useSelector((state) => state.getIn(['config', 'nasaDomain']));
-  const apodUri = useSelector((state) => state.getIn(['config', 'apodUri']));
-  const apiKey = useSelector((state) => state.getIn(['config', 'apiKey']));
+  const nasaDomain = useNasaDomain();
+  const apodUri = useApodUri();
+  const apiKey = useApiKey();
 
   React.useEffect(() => {
     let isMounted = true;
