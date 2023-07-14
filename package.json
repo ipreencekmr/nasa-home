@@ -39,7 +39,9 @@
     "bundler": {
       "webpackConfigPath": "webpack.config.js",
       "requiredExternals": [
-        "react-intl"
+        "react-intl",
+        "@emotion/react",
+        "@emotion/styled"
       ]
     }
   },
