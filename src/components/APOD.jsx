@@ -9,6 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import { useApod } from '../hooks/useApod';
+import { ProgressLoader } from './ProgressLoader';
 
 export const APOD = () => {
   const {
@@ -17,7 +18,9 @@ export const APOD = () => {
     error,
   } = useApod();
 
-  if (isLoading || error || !apodResponse) return null;
+  if (isLoading) return <ProgressLoader />;
+
+  if (error || !apodResponse) return null;
 
   return (
     <Container sx={{ my: 2 }}>
